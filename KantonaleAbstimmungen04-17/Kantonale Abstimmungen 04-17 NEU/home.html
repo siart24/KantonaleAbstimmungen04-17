@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kantonaleabstimmungen Thurgau</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/home.js"></script>
+
+
+
+</head>
+<body>
+
+
+<div class="wrapper">
+    <div class="pb-4">
+        <div>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-auto"><img src="img/wappen_tg.png" height="150" class="d-block"></div>
+                        <div class="col"><h1 class="display-4 m-0">Resultate der kantonalen Abstimmungen im Kanton Thurgau 2004-2017</h1>
+                            <br>
+
+                            <h3 class="text-muted">Diese Website beinhaltet Daten von <a style="color: #0FA84D;"
+                                                                                         href="https://opendata.swiss/de/dataset/abstimmungsarchiv-kantonale-abstimmungen-kanton-thurgau"
+                                                                                         target="_blank">OGD Schweiz</a></h3>
+                            <p class="text-muted">Auf dieser Website finden Sie verschiedene Wahlresultate, von allen
+                                Gemeinden im Kanton Thurgau, von den Vorlagen aus den Jahren 2004 - 2017.</p>
+                            <br>
+
+
+
+                            <div class="weiss container my-4">
+                                <input id="regler" type="range"  min="2004" max="2017" value="2011" oninput="JahrToBox(), validateInput(), WahlenJahrGen()">
+                                <div>
+                                    <div style="float: left;">
+                                        <a>2004</a>
+                                    </div>
+                                    <div style="float: right;">
+                                        <a>2017</a>
+                                    </div>
+                                </div>
+                                <div class="floater">
+                                    <div class="miti"><input id="JahrBox" type="text" value="2011" size="2" oninput="BoxToJahr(), validateInput(), WahlenJahrGen(), drawChartKanton()"></div>
+                                    <p id="alarm" style="display:none;color:red;">Geben sie nur ein Jahr zwischen 2004 und 2017 ein!</p>
+                                </div>
+
+                                <div class="floater" style="margin-top: 20px;margin-bottom: 20px;">
+                                    <select id="wahlen" class="custom-select" oninput=""><option>Abstimmung</option></select>
+                                </div>
+
+
+                                <!-- Auslesen der Gemeinden,-->
+                                <div><select id="gemeinde" class="custom-select" style="width: 30%" oninput="drawChart()">
+                                    <option>Gemeinde</option>
+                                    <option>Aadorf</option>
+                                    <option>Affeltrangen</option>
+                                    <option>Altnau</option>
+                                    <option>Amlikon-Bissegg</option>
+                                    <option>Amriswil</option>
+                                    <option>Arbon</option>
+                                    <option>Basadingen-Schlattingen</option>
+                                    <option>Berg</option>
+                                    <option>Berlingen</option>
+                                    <option>Bettwiesen</option>
+                                    <option>Bichelsee-Balterswil</option>
+                                    <option>Birwinken</option>
+                                    <option>Bischofszell</option>
+                                    <option>Bottighofen</option>
+                                    <option>Braunau</option>
+                                    <option>Bürglen</option>
+                                    <option>Bussnang</option>
+                                    <option>Diessenhofen</option>
+                                    <option>Dozwil</option>
+                                    <option>Egnach</option>
+                                    <option>Erlen</option>
+                                    <option>Ermatingen</option>
+                                    <option>Eschenz</option>
+                                    <option>Eschlikon</option>
+                                    <option>Felben-Wellhausen</option>
+                                    <option>Fischingen</option>
+                                    <option>Frauenfeld</option>
+                                    <option>Gachnang</option>
+                                    <option>Gottlieben</option>
+                                    <option>Güttingen</option>
+                                    <option>Hauptwil-Gottshaus</option>
+                                    <option>Hefenhofen</option>
+                                    <option>Herdern</option>
+                                    <option>Hohentannen</option>
+                                    <option>Homburg</option>
+                                    <option>Horn</option>
+                                    <option>Hüttlingen</option>
+                                    <option>Hüttwilen</option>
+                                    <option>Kemmental</option>
+                                    <option>Kesswil</option>
+                                    <option>Kradolf-Schönenberg</option>
+                                    <option>Kreuzlingen</option>
+                                    <option>Langrickenbach</option>
+                                    <option>Lengwil</option>
+                                    <option>Lommis</option>
+                                    <option>Mammern</option>
+                                    <option>Märstetten</option>
+                                    <option>Matzingen</option>
+                                    <option>Müllheim</option>
+                                    <option>Münchwilen</option>
+                                    <option>Münsterlingen</option>
+                                    <option>Neunforn</option>
+                                    <option>Pfyn</option>
+                                    <option>Raperswilen</option>
+                                    <option>Rickenbach</option>
+                                    <option>Roggwil</option>
+                                    <option>Romanshorn</option>
+                                    <option>Salenstein</option>
+                                    <option>Salmsach</option>
+                                    <option>Schlatt</option>
+                                    <option>Schönholzerswilen</option>
+                                    <option>Sirnach</option>
+                                    <option>Sommeri</option>
+                                    <option>Steckborn</option>
+                                    <option>Stettfurt</option>
+                                    <option>Sulgen</option>
+                                    <option>Tägerwilen</option>
+                                    <option>Thundorf</option>
+                                    <option>Tobel-Tägerschen</option>
+                                    <option>Uesslingen-Buch</option>
+                                    <option>Uttwil</option>
+                                    <option>Wagenhausen</option>
+                                    <option>Wäldi</option>
+                                    <option>Wängi</option>
+                                    <option>Warth-Weiningen</option>
+                                    <option>Weinfelden</option>
+                                    <option>Wigoltingen</option>
+                                    <option>Wilen</option>
+                                    <option>Wuppenau</option>
+                                    <option>Zihlschlacht-Sitterdorf</option>
+                                </select></div>
+                                <div id="chart_div" style="float:left;margin-right: 20px;"></div>
+                                <div id="chart_kanton" style="float:left;"></div>
+
+                                <div style="float:left;display: none;margin-top: 30px;" id="wappen"><img id="wappenBild" alt="Gemeinde Wappen"></div>
+                                <div style="clear:both"></div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+
+
+
+
+</body>
+</html>
+
+
